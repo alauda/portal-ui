@@ -1,0 +1,38 @@
+<div class="footer__title">
+  {{ 'products_introduction' | translate }}
+</div>
+<div
+  class="footer__groups"
+  *ngIf="data?.spec.groups as groups"
+>
+  <div
+    *ngFor="let group of groups"
+    class="footer__card"
+  >
+    <a
+      class="footer__card-link"
+      [aclDocs]="{
+        path: group.docs[0].docEntrypoint | pure: handleDocEntrypoint,
+        type: 'page'
+      }"
+    >
+      <div class="footer__card-title">
+        <div class="footer__card-icon">
+          <img [src]="group.docs[0].logo | aclSafe: 'url'" />
+        </div>
+        {{ group.groupName | translate: {}:true }}
+      </div>
+      <div
+        *ngFor="let doc of group.docs"
+        class="footer__card-content"
+      >
+        <div class="footer__card-name">
+          {{ doc.displayName | translate: {}:true }}
+        </div>
+        <div class="footer__card-description">
+          {{ doc.description | translate: {}:true }}
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

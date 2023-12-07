@@ -1,0 +1,167 @@
+<acl-page>
+  <acl-page-header
+    *aclPageHeader
+    [menuActions]="false"
+    [isPlatform]="false"
+    [title]="(platformInfo$ | async)?.name | translate"
+  >
+  </acl-page-header>
+
+  <div *aclPageContent>
+    <div class="page">
+      <div>
+        <div
+          *ngIf="(bg$ | async)?.topImage as topImage"
+          class="bg banner"
+          [style.background-image]="'url(' + topImage + ')' | aclSafe: 'style'"
+        >
+          <div class="bg__mask bg__mask--top">
+            <div
+              class="banner-title"
+              [title]="(platformInfo$ | async)?.mainTitle | translate"
+            >
+              {{ (platformInfo$ | async)?.mainTitle | translate }}
+            </div>
+            <div
+              class="banner-subtitle"
+              [title]="(platformInfo$ | async)?.subTitle | translate"
+            >
+              {{ (platformInfo$ | async)?.subTitle | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="products-container">
+          <div class="products-title-container">
+            <div class="products-title">
+              {{ 'cloud_product' | translate }}
+            </div>
+            <div class="products-subtitle">
+              {{ 'cloud_product_des' | translate }}
+            </div>
+          </div>
+          <ng-container *ngIf="allEntries$ | async as displayEntries">
+            <ng-container *ngIf="!(entriesLoading$$ | async); else loading">
+              <div
+                *ngIf="
+                  displayEntries?.length && !(entriesLoadingError$$ | async);
+                  else empty
+                "
+              >
+                <div
+                  class="card-container"
+                  [style.max-width.px]="
+                    displayEntries?.length | pure: getCardContainerMaxWidth
+                  "
+                >
+                  <div
+                    class="card"
+                    *ngFor="let entry of displayEntries"
+                    (click)="gotoProduct(entry)"
+                    [id]="entry.metadata.name"
+                  >
+                    <div class="card__logo">
+                      <ng-container
+                        *ngIf="
+                          entry.spec.packType !== 'Integrated' &&
+                            !entry.spec.logo;
+                          else logo
+                        "
+                      >
+                        <aui-icon
+                          class="acl-colorful-icon"
+                          size="50"
+                          [icon]="
+                            'bicolor:' + PRODUCT_ICON_MAP[entry.metadata.name]
+                          "
+                        ></aui-icon>
+                      </ng-container>
+                      <ng-template #logo>
+                        <img
+                          [src]="
+                            (entry.spec.logo | aclImageHeader) ||
+                              'images/product-default-logo.png' | aclSafe: 'url'
+                          "
+                        />
+                      </ng-template>
+                    </div>
+                    <div
+                      class="card__display-name"
+                      [title]="entry.spec.displayName | translate: {}:true"
+                    >
+                      {{ entry.spec.displayName | translate: {}:true }}
+                    </div>
+                    <div
+                      class="card__version"
+                      [title]="entry.spec.version"
+                    >
+                      {{ entry.spec.version }}
+                    </div>
+                    <div
+                      class="card__description"
+                      [title]="entry.spec.description | translate: {}:true"
+                    >
+                      {{ entry.spec.description | translate: {}:true }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-template #empty>
+                <div class="placeholder">
+                  <img
+                    [attr.src]="
+                      (entriesLoadingError$$ | async)
+                        ? 'images/img-failed.svg'
+                        : 'images/empty.svg'
+                    "
+                  />
+                  <div class="placeholder__title">
+                    {{
+                      ((entriesLoadingError$$ | async)
+                        ? 'product_abnormal_title'
+                        : 'no_product'
+                      ) | translate
+                    }}
+                  </div>
+                  <div class="placeholder__text">
+                    {{
+                      ((entriesLoadingError$$ | async)
+                        ? 'product_abnormal'
+                        : 'please_contact_administrator'
+                      ) | translate
+                    }}
+                  </div>
+                </div>
+              </ng-template>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+      <ng-container *ngIf="productDocsEntry$ | async as productDocsEntry">
+        <div
+          *ngIf="
+            (bg$ | async)?.bottomImage && (productDocsEntry | pure: showDocs)
+          "
+          class="bg"
+          [style.height]="'auto'"
+          [style.background-image]="
+            'url(' + (bg$ | async).bottomImage + ')' | aclSafe: 'style'
+          "
+        >
+          <div class="bg__mask bg__mask--bottom">
+            <alu-portal-footer [data]="productDocsEntry"></alu-portal-footer>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</acl-page>
+
+<ng-template #loading>
+  <div class="loading-mark">
+    <aui-icon icon="spinner"></aui-icon>
+    <div class="text">
+      {{ 'loading_please_wait' | translate }}
+    </div>
+  </div>
+</ng-template>

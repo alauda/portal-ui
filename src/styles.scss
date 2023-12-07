@@ -1,0 +1,5 @@
+@import 'node_modules/@alauda-fe/common/styles/global';
+
+alu-root {
+  @include app-root;
+}

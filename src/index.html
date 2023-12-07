@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+  lang="zh-Hans-CN"
+  aui-theme-mode="system"
+>
+  <head>
+    <meta charset="utf-8" />
+    <base href="/console-portal/" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="/console/api/v1/cm/ui-logos/favicon"
+    />
+    <title>Portal</title>
+    <script>
+      const pathArray = location.pathname.split('/');
+
+      const root =
+        pathArray[1] === 'clusters-rewrite' || pathArray[1] === 'clusters'
+          ? pathArray.slice(1, 4).join('/')
+          : pathArray[1];
+
+      document.querySelector('base').href = `/${root}/`;
+    </script>
+    <script src="/console/assets/override-theme.js"></script>
+    <script src="themes/refresh-favicon.js"></script>
+  </head>
+  <body>
+    <div class="sk-folding-cube index-loading-spinner">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+    <alu-root></alu-root>
+  </body>
+</html>
