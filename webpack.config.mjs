@@ -1,12 +1,10 @@
-import path from "node:path";
-
 import customWebpack from "@alauda/custom-webpack";
 
 export default async (webpackConfig, options) => {
   const config = customWebpack(webpackConfig, options);
 
+  // 移除不需要的 `@alauda-fe/common` peerDependencies
   Object.assign(config.resolve.alias, {
-    dompurify$: "domiso",
     "compare-versions": false,
     "cron-parser": false,
     cronstrue: false,
@@ -33,12 +31,6 @@ export default async (webpackConfig, options) => {
     "xterm-addon-canvas": false,
     "xterm-addon-webgl": false,
   });
-
-  if (!config.resolve.fallback) {
-    config.resolve.fallback = {};
-  }
-
-  Object.assign(config.resolve.fallback, { crypto: false });
 
   return config;
 };

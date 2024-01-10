@@ -64,9 +64,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alauda/code-editor@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@alauda/code-editor@npm:5.1.0"
+"@alauda/code-editor@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@alauda/code-editor@npm:5.2.0"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
@@ -78,18 +78,17 @@ __metadata:
     "@angular/forms": ">=13.0.0"
     "@angular/platform-browser": ">=13.0.0"
     dayjs: ^1.0.0
-    file-saver: ^2.0.0
     lodash-es: ^4.0.0
     marked: ^4.0.0
     ng-monaco-editor: ^4.0.0 || ^5.0.0
     rxjs: ^7.0.0
-  checksum: 5590438b2b832af75776feb2658394504282b67887d78e0d1794285f0477ffa982a5dda3a547cce3149f00fdad665a3efaaefbcd8288ce728a684280f704db70
+  checksum: 23d39d3ff24cce9c04658db09a310d0ed39356d2370b749e3837de469bb9bf0f5301cd0ce42694541abfe5b35d694d02f0f59365c43f657b585f51dfb0869d8d
   languageName: node
   linkType: hard
 
-"@alauda/custom-webpack@npm:5.1.2-beta.1":
-  version: 5.1.2-beta.1
-  resolution: "@alauda/custom-webpack@npm:5.1.2-beta.1"
+"@alauda/custom-webpack@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@alauda/custom-webpack@npm:5.2.0"
   dependencies:
     "@alauda/jsencrypt": "npm:^3.0.0"
     "@pkgr/es-modules": "npm:^0.6.3"
@@ -109,7 +108,7 @@ __metadata:
     gm: "npm:^1.25.0"
     got: "npm:^13.0.0"
     html-minifier: "npm:^4.0.0"
-    http-proxy: "npm:^1.18.1"
+    http-proxy: "github:xeroxinteractive/node-http-proxy#PH-force-passes"
     lodash-es: "npm:^4.17.21"
     lookpath: "npm:^1.2.2"
     serve-handler: "npm:^6.1.5"
@@ -129,7 +128,7 @@ __metadata:
     cce: lib/change-console-env.js
     hm: lib/html-minifier.js
     serve: lib/serve.js
-  checksum: 10939b9761ad992ac8380b74587d67ba8ef3dd39b74d5877fe5c3ceb1629eda64d2e859ecaf4c967513be7f24b0ec583a070e91e3965c07bd3640aa0e2e5e075
+  checksum: a63023c7a082e586766d773ad150026b921c3b9a9115bc51a21fe5e55c2d7bd2b6328a3e11ec92f3f8f35855da8bd3962f66ffb9355ee3054200d2e6123fe8f7
   languageName: node
   linkType: hard
 
@@ -5701,13 +5700,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-saver@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "file-saver@npm:2.0.5"
-  checksum: 0a361f683786c34b2574aea53744cb70d0a6feb0fa5e3af00f2fcb6c9d40d3049cc1470e38c6c75df24219f247f6fb3076f86943958f580e62ee2ffe897af8b1
-  languageName: node
-  linkType: hard
-
 "filelist@npm:^1.0.4":
   version: 1.0.4
   resolution: "filelist@npm:1.0.4"
@@ -6417,6 +6409,17 @@ __metadata:
     "@types/express":
       optional: true
   checksum: 25a0e550dd1900ee5048a692e0e9b2b6339d06d487a705d90c47e359e9c6561d648cd7862d001d090e651c9efffa1b6e5160fcf1f299b5fa4935f76e9754eb11
+  languageName: node
+  linkType: hard
+
+"http-proxy@github:xeroxinteractive/node-http-proxy#PH-force-passes":
+  version: 1.18.1
+  resolution: "http-proxy@https://github.com/xeroxinteractive/node-http-proxy.git#commit=15faad1da6ff73e7211964bdc42ff6a107773bc1"
+  dependencies:
+    eventemitter3: "npm:^4.0.0"
+    follow-redirects: "npm:^1.0.0"
+    requires-port: "npm:^1.0.0"
+  checksum: 4972d6a40650e09479ce4e1b49c4b5c81b55d2932b0ae5286bd0921c739509bc4bbe4d8ad95bd10279144f59a3225db0520806f06d8de5ec3550d269ef3d85dd
   languageName: node
   linkType: hard
 
@@ -8917,8 +8920,8 @@ __metadata:
   dependencies:
     "@alauda-fe/common": "npm:^1.0.0"
     "@alauda/chart": "npm:^0.1.11"
-    "@alauda/code-editor": "npm:^5.1.0"
-    "@alauda/custom-webpack": "npm:5.1.2-beta.1"
+    "@alauda/code-editor": "npm:^5.2.0"
+    "@alauda/custom-webpack": "npm:^5.2.0"
     "@alauda/ui": "npm:^7.3.0"
     "@angular-builders/custom-webpack": "npm:^17.0.0"
     "@angular-devkit/build-angular": "npm:^17.0.6"
@@ -8937,7 +8940,6 @@ __metadata:
     "@types/lodash-es": "npm:^4.17.12"
     ab64: "npm:^0.1.1"
     dayjs: "npm:^1.11.10"
-    file-saver: "npm:^2.0.5"
     jasmine-core: "npm:~5.1.0"
     karma: "npm:~6.4.0"
     karma-chrome-launcher: "npm:~3.2.0"
